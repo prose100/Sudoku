@@ -1,11 +1,12 @@
 (function() {
+  'use strict'
 
   var defaults = {
     filler_class: 'filler'    
   };
 
   function Sudoku(element, options) {
-    settings = $.extend({}, defaults, options);
+    var settings = $.extend({}, defaults, options);
     this.start();
   }
 
@@ -14,7 +15,8 @@
   }
 
     function play() {
-      gameBoard = createGameBoard();
+      var gameBoard = createGameBoard();
+      updateGame(gameBoard);
       console.log(gameBoard);
     }
 
@@ -45,6 +47,10 @@
         }
       }
       return new Board(boxes);
+    }
+
+    function updateGame(gameBoard) {
+      gameBoard.draw();
     }
 
   $.fn.sudoku = function(options) {
