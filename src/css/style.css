@@ -44,41 +44,23 @@
 /* ==========================================================================
    Homepage
    ========================================================================== */
-/* ---------------------------------------------
-      Header
-   --------------------------------------------- */
-.main-header {
-  font-family: myFirstFont;
+.gameBoard {
+  width: 325px;
+  height: 325px;
+  margin: 0 auto;
 }
-.logo-text {
-  text-indent: -9999px;
+.gameBoard .box,
+.gameBoard input {
+  border: 1px solid #000;
+  float: left;
+  width: 35px;
+  height: 35px;
+  text-align: center;
 }
-/* ---------------------------------------------
-      Slider
-   --------------------------------------------- */
-.cycle-prev,
-.cycle-next {
-  display: inline-block;
-}
-/* ---------------------------------------------
-      Footer
-   --------------------------------------------- */
-footer {
-  height: 700px;
-  background-color: green;
-}
-/* ---------------------------------------------
-      UpScroll
-   --------------------------------------------- */
-.uparrow {
-  background: url('../img/uparrow.png');
-  cursor: pointer;
-  width: 66px;
-  height: 67px;
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  display: none;
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
 }
 /*------------------------------------------
   Responsive Grid Media Queries - 1280, 1024, 768, 480

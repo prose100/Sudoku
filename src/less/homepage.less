@@ -2,51 +2,22 @@
    Homepage
    ========================================================================== */
 
-/* ---------------------------------------------
-      Header
-   --------------------------------------------- */
+.gameBoard {
+	width: 325px;
+	height: 325px;
+	margin: 0 auto;
 
-.main-header {
-  font-family: myFirstFont;
+	.box, input {
+		border: 1px solid #000;
+		float: left;
+		width: 35px;
+		height: 35px;
+		text-align: center;
+	}
 }
 
-.logo-text {
-	text-indent: -9999px;
-}
-
-
-
-/* ---------------------------------------------
-      Slider
-   --------------------------------------------- */
-
-.cycle-prev, .cycle-next {
-	display: inline-block;
-}
-
-
-
-/* ---------------------------------------------
-      Footer
-   --------------------------------------------- */
-
-footer {
-	height: 700px;
-	background-color: green;
-}
-
-
-/* ---------------------------------------------
-      UpScroll
-   --------------------------------------------- */
-
-.uparrow {
-    background: url('../img/uparrow.png');
-    cursor: pointer;
-    width: 66px;
-    height: 67px;
-    position: fixed;
-    bottom: 30px;
-    right:30px;
-    display:none;
+.clearfix:after {
+	content: '';
+	display: table;
+	clear: both;
 }
