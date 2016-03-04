@@ -17,6 +17,7 @@
     function play() {
       var gameBoard = createGameBoard();
       updateGame(gameBoard);
+      getArrays(gameBoard, 1)
       console.log(gameBoard);
     }
 
@@ -26,15 +27,15 @@
        //Temporary gameBoard Input
       var newBoard = 
           [
-          [1,2,,4,5,6,7,,9],
-          [1,2,3,4,5,6,7,8,9],
-          [1,2,3,4,5,6,7,8,9],
-          [1,2,3,4,5,6,7,8,9],
-          [1,2,3,4,5,6,7,8,9],
-          [1,2,3,4,5,6,7,8,9],
-          [1,2,3,4,5,6,7,8,9],
-          [1,2,3,4,5,6,7,8,9],
-          [1,2,3,4,5,6,7,8,9]
+          [,1,2,4,8,7,,,],
+          [,,,,,,4,8,],
+          [4,8,3,,,,5,2,],
+          [7,,9,,,,,4,8],
+          [,,,,3,,,,2],
+          [8,2,,,,4,,9,6],
+          [,,6,,,,8,,3],
+          [9,,,,,5,,1,],
+          [,4,,,,8,9,,5]
           ]
 
       for (var i=0; i<9; i++) {
@@ -51,6 +52,10 @@
 
     function updateGame(gameBoard) {
       gameBoard.draw();
+    }
+
+    function getArrays(gameBoard, rowNumber) {
+      console.log(gameBoard.getRow(rowNumber));
     }
 
   $.fn.sudoku = function(options) {
