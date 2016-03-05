@@ -17,7 +17,7 @@
     function play() {
       var gameBoard = createGameBoard();
       updateGame(gameBoard);
-      getArrays(gameBoard, 1)
+      getArrays(gameBoard, 1, 2)
       console.log(gameBoard);
     }
 
@@ -54,8 +54,9 @@
       gameBoard.draw();
     }
 
-    function getArrays(gameBoard, rowNumber) {
+    function getArrays(gameBoard, rowNumber, colNumber) {
       console.log(gameBoard.getRow(rowNumber));
+      console.log(gameBoard.getCol(colNumber));
     }
 
   $.fn.sudoku = function(options) {
