@@ -17,7 +17,7 @@
     function play() {
       var gameBoard = createGameBoard();
       updateGame(gameBoard);
-      gameBoard.removeFromSolution();  
+      gameBoard.removeFromSolution();
       updateGame(gameBoard);
     }
 
@@ -55,10 +55,6 @@
     function updateGame(gameBoard) {
       gameBoard.draw();
     }
-
-    // function getArrays(gameBoard, rowNumber, colNumber, secNumber) {
-      
-    // }
 
   $.fn.sudoku = function(options) {
     return this.each(function() {

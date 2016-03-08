@@ -46,7 +46,7 @@ Board.prototype.getSection = function(rowNumber, colNumber) {
 			if (box.solution.length == null) {
 				sec.push(box.solution)
 			}
-			boxNum = boxNum+1;
+			boxNum = boxNum + 1;
 		}
 		boxNum = boxNum + 6;
 	}
@@ -104,8 +104,16 @@ Board.prototype.removeFromSolution = function() {
 			box.solution = remove(colValues, box.solution);
 			var secValues = Board.prototype.getSection.call(this, box.i, box.j);
 			box.solution = remove(secValues, box.solution);
-			console.log(box.solution);
+			box.solution = convertArrayToSingleValue(box.solution);
 		}
+	}
+}
+
+function convertArrayToSingleValue(array) {
+	if (array.length == 1) {
+		return array[0];
+	} else {
+		return array;
 	}
 }
 
