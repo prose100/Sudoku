@@ -1,7 +1,7 @@
 (function() {
 
   var defaults = {
-    filler_class: 'filler'    
+    solveButton_class: 'solveButton'  
   };
 
   function Sudoku(element, options) {
@@ -10,27 +10,30 @@
   }
 
   Sudoku.prototype.start = function() {
+    //Create UI 
     var uicontent = new UI(); 
-    var gameBoard = createGameBoard();
-    play();
 
-    //User Interface
-    uicontent.getSolution().click(function() {
-        var endSolution = false;
-        var i = 0;
-        while (gameBoard.isUnsolved() || endSolution) {
-          gameBoard.removeFromSolution();
-          updateGame(gameBoard);
-          i++;
-          if (i>10) {
-            endSolution = true;
-          }
-        }
-    });
+    //Create GameBoard
+    var gameBoard = createGameBoard();
+    gameBoard.addClass();
+    updateGame(gameBoard);
     
-    function play() {
-      gameBoard.addClass();
-      updateGame(gameBoard);
+    //User Interface
+    initUI();
+    function initUI() {
+      //Get Solution
+      uicontent.getSolution().click(function() {
+          var endSolution = false;
+          var i = 0;
+          while (gameBoard.isUnsolved() || endSolution) {
+            gameBoard.removeFromSolution();
+            updateGame(gameBoard);
+            i++;
+            if (i>10) {
+              endSolution = true;
+            }
+          }
+      });
     }
 
     function createGameBoard() {
@@ -80,23 +83,6 @@
 
     function updateGame(gameBoard) {
       gameBoard.draw();
-    }
-
-    function solve() {
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
     }
   }
 
