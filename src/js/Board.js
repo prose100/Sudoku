@@ -36,6 +36,62 @@ Board.prototype.getCol = function(colNumber) {
 	return col;
 }
 
+Board.prototype.getSection = function(rowNumber, colNumber) {
+	var sec = [];
+	var boxNum = Board.prototype.getSecLocation.call(this, rowNumber, colNumber);
+
+	for (var i=0; i<3; i++) {
+		for (var j=0; j<3;j++) {
+			var box = this.boxes[boxNum];
+			if (box.solution.length == null) {
+				sec.push(box.solution)
+			}
+			boxNum = boxNum+1;
+		}
+		boxNum = boxNum + 6;
+	}
+	return sec;	
+}
+
+
+Board.prototype.getSecLocation = function(rowNumber, colNumber) {
+	if (inRange(rowNumber, 0, 2) && inRange(colNumber, 0, 2)) {
+		return 0;
+	}
+	if (inRange(rowNumber, 0, 2) && inRange(colNumber, 3, 5)) {
+		return 3;
+	}
+	if (inRange(rowNumber, 0, 2) && inRange(colNumber, 6, 8)) {
+		return 6;
+	}
+	if (inRange(rowNumber, 3, 5) && inRange(colNumber, 0, 2)) {
+		return 27;
+	}
+	if (inRange(rowNumber, 3, 5) && inRange(colNumber, 3, 5)) {
+		return 30;
+	}
+	if (inRange(rowNumber, 3, 5) && inRange(colNumber, 6, 8)) {
+		return 33;
+	}
+	if (inRange(rowNumber, 6, 8) && inRange(colNumber, 0, 2)) {
+		return 54;
+	}
+	if (inRange(rowNumber, 6, 8) && inRange(colNumber, 3, 5)) {
+		return 57;
+	}
+	if (inRange(rowNumber, 6, 8) && inRange(colNumber, 6, 8)) {
+		return 60;
+	}
+}
+
+function inRange(number, lowerLimit, upperLimit) {
+	if (number>=lowerLimit && number<=upperLimit) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 Board.prototype.removeFromSolution = function() {
 	//Remove impossible values for the solution from a box
 	//that has not been solved yet
@@ -46,18 +102,12 @@ Board.prototype.removeFromSolution = function() {
 			box.solution = remove(rowValues, box.solution);
 			var colValues = Board.prototype.getCol.call(this, box.j);
 			box.solution = remove(colValues, box.solution);
+			var secValues = Board.prototype.getSection.call(this, box.i, box.j);
+			box.solution = remove(secValues, box.solution);
 			console.log(box.solution);
 		}
 	}
 }
-
-// Board.prototype.getSection = function(secNumber) {
-// 	var sec = [];
-// 	for (var i=0; i<9; i++) {
-// 		sec.push( )
-// 	}
-// 	return sec;	
-// }
 
 function remove(subset, set) {
 	//Helper function to remove value(s) from an array
