@@ -12,6 +12,14 @@ Board.prototype.draw = function() {
 	}
 }
 
+Board.prototype.addClass = function() {
+	var box;
+	for (var boxNum = 0; boxNum<this.boxes.length; boxNum++) {
+		 box = this.boxes[boxNum];
+		(box.content).addClass('boxNum' + boxNum)
+	}
+}
+
 Board.prototype.getRow = function(rowNumber) {
 	//Get only the solved boxes from the numbered row on the game board
 	var row = [];
@@ -105,6 +113,7 @@ Board.prototype.removeFromSolution = function() {
 			var secValues = Board.prototype.getSection.call(this, box.i, box.j);
 			box.solution = remove(secValues, box.solution);
 			box.solution = convertArrayToSingleValue(box.solution);
+			console.log(box.solution);
 		}
 	}
 }

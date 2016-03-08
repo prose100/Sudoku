@@ -16,6 +16,19 @@
 
     function play() {
       var gameBoard = createGameBoard();
+      gameBoard.addClass();
+      updateGame(gameBoard);
+      gameBoard.removeFromSolution();
+      updateGame(gameBoard);
+      gameBoard.removeFromSolution();
+      updateGame(gameBoard);
+      gameBoard.removeFromSolution();
+      updateGame(gameBoard);
+      gameBoard.removeFromSolution();
+      updateGame(gameBoard);
+      gameBoard.removeFromSolution();
+      updateGame(gameBoard);
+      gameBoard.removeFromSolution();
       updateGame(gameBoard);
       gameBoard.removeFromSolution();
       updateGame(gameBoard);
@@ -25,7 +38,7 @@
       var boxes = [];
       var solution = [];
       
-      //Temporary gameBoard Input
+      // Difficulty: Moderate
       var newBoard = 
           [
           [0,1,2,4,8,7,0,0,0],
@@ -38,6 +51,20 @@
           [9,0,0,0,0,5,0,1,0],
           [0,4,0,0,0,8,9,0,5]
           ]
+
+      //Difficulty: Hard
+      // var newBoard = 
+      //     [
+      //     [0,7,0,2,0,0,0,1,0],
+      //     [0,8,2,1,0,0,0,0,0],
+      //     [0,9,0,6,0,0,0,8,4],
+      //     [0,0,9,0,6,0,0,0,0],
+      //     [4,0,7,5,0,0,0,0,0],
+      //     [5,0,0,0,0,0,7,2,0],
+      //     [9,0,0,4,7,0,3,0,0], 
+      //     [0,0,0,0,0,0,8,0,1],
+      //     [0,0,0,0,8,2,0,0,0]
+      //     ]
 
       //Place all values 1-9 as possible solutions in boxes that do not have a solution    
       for (var i = 0; i<9; i++) {

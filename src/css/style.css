@@ -56,6 +56,50 @@
   height: 35px;
   text-align: center;
 }
+.gameBoard .boxNum2,
+.gameBoard .boxNum11,
+.gameBoard .boxNum20,
+.gameBoard .boxNum29,
+.gameBoard .boxNum38,
+.gameBoard .boxNum47,
+.gameBoard .boxNum56,
+.gameBoard .boxNum65,
+.gameBoard .boxNum74 {
+  border-right: 3px solid #000;
+}
+.gameBoard .boxNum5,
+.gameBoard .boxNum14,
+.gameBoard .boxNum23,
+.gameBoard .boxNum32,
+.gameBoard .boxNum41,
+.gameBoard .boxNum50,
+.gameBoard .boxNum59,
+.gameBoard .boxNum68,
+.gameBoard .boxNum77 {
+  border-right: 3px solid #000;
+}
+.gameBoard .boxNum18,
+.gameBoard .boxNum19,
+.gameBoard .boxNum20,
+.gameBoard .boxNum21,
+.gameBoard .boxNum22,
+.gameBoard .boxNum23,
+.gameBoard .boxNum24,
+.gameBoard .boxNum25,
+.gameBoard .boxNum26 {
+  border-bottom: 3px solid #000;
+}
+.gameBoard .boxNum45,
+.gameBoard .boxNum46,
+.gameBoard .boxNum47,
+.gameBoard .boxNum48,
+.gameBoard .boxNum49,
+.gameBoard .boxNum50,
+.gameBoard .boxNum51,
+.gameBoard .boxNum52,
+.gameBoard .boxNum53 {
+  border-bottom: 3px solid #000;
+}
 .clearfix:after {
   content: '';
   display: table;
