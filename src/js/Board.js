@@ -1,25 +1,75 @@
 function Board(boxes) {
+	//boxes 0-80
 	this.boxes = boxes;
 }
 
 Board.prototype.draw = function() {
-	for (var i = 0; i<this.boxes.length; i++) {
-		this.boxes[i].content.css({'display':'block'})
+	for (var boxNum = 0; boxNum<this.boxes.length; boxNum++) {
+		var box = this.boxes[boxNum];
+		if (box.solution.length == null) {
+			(box.content).val(box.solution).css({'display':'block'});
+		}
 	}
 }
 
 Board.prototype.getRow = function(rowNumber) {
+	//Get only the solved boxes from the numbered row on the game board
 	var row = [];
-	for (var i = 9*(rowNumber-1); i<=(9*rowNumber)-1; i++) {
-		row.push(this.boxes[i]);
+	for (var i = 0; i<9; i++) {
+		var box = this.boxes[9*rowNumber+i];
+		if (box.solution.length == null) {
+			row.push(box.solution);
+		}
 	}
 	return row;
 }
 
 Board.prototype.getCol = function(colNumber) {
+	//Get only the solved boxes from the numbered col on the game board
 	var col = [];
 	for (var i = 0; i<9; i++) {
-		col.push(this.boxes[9*i+(colNumber-1)]);
+		var box = this.boxes[9*i+(colNumber)];
+		if (box.solution.length == null) {
+			col.push(box.solution);
+		}
 	}
 	return col;
+}
+
+Board.prototype.removeFromSolution = function() {
+	//Remove impossible values for the solution from a box
+	//that has not been solved yet
+	for (var boxNum = 0; boxNum<this.boxes.length; boxNum++) {
+		var box = this.boxes[boxNum];
+		if ((box.solution.length) != null) {
+			var rowValues = Board.prototype.getRow.call(this, box.i);
+			box.solution = remove(rowValues, box.solution);
+			var colValues = Board.prototype.getCol.call(this, box.j);
+			box.solution = remove(colValues, box.solution);
+			console.log(box.solution);
+		}
+	}
+}
+
+// Board.prototype.getSection = function(secNumber) {
+// 	var sec = [];
+// 	for (var i=0; i<9; i++) {
+// 		sec.push( )
+// 	}
+// 	return sec;	
+// }
+
+function remove(subset, set) {
+	//Helper function to remove value(s) from an array
+	var newArr = [];
+	for (var i = 0; i<subset.length; i++) {
+		searchValue=subset[i];
+		set=($(set).not([searchValue]));
+			for (var j=0; j<set.length; j++){
+			 	newArr.push(set[j]);
+			}
+		set = newArr;
+		newArr=[];		
+	}
+	return set;
 }

@@ -49,7 +49,6 @@
   height: 325px;
   margin: 0 auto;
 }
-.gameBoard .box,
 .gameBoard input {
   border: 1px solid #000;
   float: left;
