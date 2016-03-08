@@ -113,9 +113,19 @@ Board.prototype.removeFromSolution = function() {
 			var secValues = Board.prototype.getSection.call(this, box.i, box.j);
 			box.solution = remove(secValues, box.solution);
 			box.solution = convertArrayToSingleValue(box.solution);
-			console.log(box.solution);
 		}
 	}
+}
+
+Board.prototype.isUnsolved = function() {
+	var box;
+	for (var boxNum = 0; boxNum<this.boxes.length; boxNum++) {
+		box = this.boxes[boxNum];
+		if ((box.solution.length) != null) {
+			return true;
+		} 
+	}
+	return false;
 }
 
 function convertArrayToSingleValue(array) {

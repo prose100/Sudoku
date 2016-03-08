@@ -1,36 +1,35 @@
 (function() {
-  'use strict'
 
   var defaults = {
     filler_class: 'filler'    
   };
 
   function Sudoku(element, options) {
-    var settings = $.extend({}, defaults, options);
+    settings = $.extend({}, defaults, options);
     this.start();
   }
 
   Sudoku.prototype.start = function() {
+    var uicontent = new UI(); 
+    var gameBoard = createGameBoard();
     play();
-  }
 
+    //User Interface
+    uicontent.getSolution().click(function() {
+        var endSolution = false;
+        var i = 0;
+        while (gameBoard.isUnsolved() || endSolution) {
+          gameBoard.removeFromSolution();
+          updateGame(gameBoard);
+          i++;
+          if (i>10) {
+            endSolution = true;
+          }
+        }
+    });
+    
     function play() {
-      var gameBoard = createGameBoard();
       gameBoard.addClass();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
-      updateGame(gameBoard);
-      gameBoard.removeFromSolution();
       updateGame(gameBoard);
     }
 
@@ -82,6 +81,24 @@
     function updateGame(gameBoard) {
       gameBoard.draw();
     }
+
+    function solve() {
+      gameBoard.removeFromSolution();
+      updateGame(gameBoard);
+      gameBoard.removeFromSolution();
+      updateGame(gameBoard);
+      gameBoard.removeFromSolution();
+      updateGame(gameBoard);
+      gameBoard.removeFromSolution();
+      updateGame(gameBoard);
+      gameBoard.removeFromSolution();
+      updateGame(gameBoard);
+      gameBoard.removeFromSolution();
+      updateGame(gameBoard);
+      gameBoard.removeFromSolution();
+      updateGame(gameBoard);
+    }
+  }
 
   $.fn.sudoku = function(options) {
     return this.each(function() {
