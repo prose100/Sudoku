@@ -44,25 +44,25 @@ Board.prototype.getCol = function(colNumber) {
 	return col;
 }
 
-Board.prototype.getSection = function(rowNumber, colNumber) {
-	var sec = [];
-	var boxNum = Board.prototype.getSecLocation.call(this, rowNumber, colNumber);
+Board.prototype.getBlock = function(rowNumber, colNumber) {
+	var block = [];
+	var boxNum = Board.prototype.getBlockLocation.call(this, rowNumber, colNumber);
 
 	for (var i=0; i<3; i++) {
 		for (var j=0; j<3;j++) {
 			var box = this.boxes[boxNum];
 			if (box.solution.length == null) {
-				sec.push(box.solution)
+				block.push(box.solution)
 			}
 			boxNum = boxNum + 1;
 		}
 		boxNum = boxNum + 6;
 	}
-	return sec;	
+	return block;	
 }
 
 
-Board.prototype.getSecLocation = function(rowNumber, colNumber) {
+Board.prototype.getBlockLocation = function(rowNumber, colNumber) {
 	if (inRange(rowNumber, 0, 2) && inRange(colNumber, 0, 2)) {
 		return 0;
 	}
@@ -110,8 +110,8 @@ Board.prototype.removeFromSolution = function() {
 			box.solution = remove(rowValues, box.solution);
 			var colValues = Board.prototype.getCol.call(this, box.j);
 			box.solution = remove(colValues, box.solution);
-			var secValues = Board.prototype.getSection.call(this, box.i, box.j);
-			box.solution = remove(secValues, box.solution);
+			var blockValues = Board.prototype.getBlock.call(this, box.i, box.j);
+			box.solution = remove(blockValues, box.solution);
 			box.solution = convertArrayToSingleValue(box.solution);
 		}
 	}
@@ -139,10 +139,10 @@ function convertArrayToSingleValue(array) {
 function remove(subset, set) {
 	//Helper function to remove value(s) from an array
 	var newArr = [];
-	for (var i = 0; i<subset.length; i++) {
+	for (var i = 0; i < subset.length; i++) {
 		searchValue=subset[i];
 		set=($(set).not([searchValue]));
-			for (var j=0; j<set.length; j++){
+			for (var j=0; j<set.length; j++) {
 			 	newArr.push(set[j]);
 			}
 		set = newArr;
