@@ -103,16 +103,24 @@ function inRange(number, lowerLimit, upperLimit) {
 Board.prototype.removeFromSolution = function() {
 	//Remove impossible values for the solution from a box
 	//that has not been solved yet
-	for (var boxNum = 0; boxNum<this.boxes.length; boxNum++) {
+	for (var boxNum = 0; boxNum < this.boxes.length; boxNum++) {
 		var box = this.boxes[boxNum];
+
+		//This checks to see if the box is still an array of possible solutions.
 		if ((box.solution.length) != null) {
+			
 			var rowValues = Board.prototype.getRow.call(this, box.i);
-			box.solution = remove(rowValues, box.solution);
+			box.solution = $(box.solution).not(rowValues);
+			
 			var colValues = Board.prototype.getCol.call(this, box.j);
-			box.solution = remove(colValues, box.solution);
+			box.solution = $(box.solution).not(colValues);
+			
 			var blockValues = Board.prototype.getBlock.call(this, box.i, box.j);
-			box.solution = remove(blockValues, box.solution);
-			box.solution = convertArrayToSingleValue(box.solution);
+			box.solution = $(box.solution).not(blockValues);
+			
+			if (box.solution.length == 1) {
+				box.solution = convertArrayToSingleValue(box.solution);
+			}
 		}
 	}
 }
@@ -134,19 +142,4 @@ function convertArrayToSingleValue(array) {
 	} else {
 		return array;
 	}
-}
-
-function remove(subset, set) {
-	//Helper function to remove value(s) from an array
-	var newArr = [];
-	for (var i = 0; i < subset.length; i++) {
-		searchValue=subset[i];
-		set=($(set).not([searchValue]));
-			for (var j=0; j<set.length; j++) {
-			 	newArr.push(set[j]);
-			}
-		set = newArr;
-		newArr=[];		
-	}
-	return set;
 }
